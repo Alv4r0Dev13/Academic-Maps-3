@@ -1,0 +1,123 @@
+/* | MAP | */
+
+.map-window {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition-duration: .4s;
+  transition-timing-function: ease-in-out;
+}
+
+#map {
+  height: 100%;
+  margin: 0 .6em .6em;
+  border-radius: 1em;
+}
+
+.shrunk {
+  width: 70%;
+}
+
+/* | EVENTS LIST | */
+
+#events-button {
+  font-size: 3rem;
+  position: absolute;
+  border-radius: .5em;
+  z-index: 2;
+  height: 4rem;
+  top: .5em;
+  right: 1em;
+  padding: .5rem;
+}
+
+.list-window {
+  position: absolute;
+  border-radius: 1em;
+  left: 70%;
+  width: calc(30% - .6em);
+  height: 100%;
+  padding: .6em .6em 0;
+}
+
+.search form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#search-bar {
+  font-size: 2rem;
+  border: none;
+  border-radius: 1em;
+  width: 80%;
+  height: 3em;
+  padding: .6em;
+}
+
+#search-btn {
+  font-size: 3rem;
+  border-radius: .3em;
+  height: 6rem;
+  width: 6rem;
+  padding: 1.5rem 0;
+}
+
+.list-display {
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  max-height: calc(100% - 9rem);
+  margin-top: .6em;
+}
+
+.list {
+  margin: .6em 0;
+}
+
+.event {
+  color: var(--MainText);
+  font-size: 2rem;
+  border-radius: 1em;
+  margin: .6em .6em 1em;
+}
+
+.event summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 1em;
+  box-shadow: 2.5px 2.5px 10px var(--Shadow1);
+  padding: .6em;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.buttons .btn {
+  font-size: 1.5rem;
+  border-radius: .5em;
+  height: 2em;
+  width: 2em;
+  margin: 0 .3em;
+}
+
+.del-btn-cover {
+  position: absolute;
+  border-radius: .5em;
+  height: 1.5em;
+  width: 1.5em;
+  margin: 0 .45rem;
+  transform: translateY(-1.5em);
+}
+
+.event-desc-display {
+  padding: .6em;
+}
+
+.dates {
+  color: var(--TextLighter);
+  font-size: 1.7rem;
+}

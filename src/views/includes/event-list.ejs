@@ -1,0 +1,57 @@
+<div class="list-window">
+  <div class="search">
+    <form action="/mapsdb-api/v1/search" method="post">
+      <input type="search" name="text" id="search-bar" class="underlay" placeholder="Procurar evento">
+      <button id="search-btn" class="btn" title="Buscar evento">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </form>
+  </div>
+  <div class="list-display">
+    <div class="list">
+      <% events.forEach(event => { %>
+      <% const sd = new String(event.startDate).slice(0, 10) %>
+      <% const ed = new String(event.endingDate).slice(0, 10) %>
+      <details class="event overlay">
+        <summary>
+          <span class="event-title"><%= event.title %></span>
+          <div class="buttons">
+            <button class="btn find" title="Ir">
+              <ion-icon name="map"></ion-icon>
+            </button>
+
+            <form action="/edit" method="post">
+              <input type="hidden" name="_id" value="<%= event._id %>">
+              <input type="hidden" name="title" value="<%= event.title %>">
+              <input type="hidden" name="positionLat" value="<%= event.positionLat %>">
+              <input type="hidden" name="positionLng" value="<%= event.positionLng %>">
+              <input type="hidden" name="description" value="<%= event.description %>">
+              <input type="hidden" name="startDate" value="<%= event.startDate %>">
+              <input type="hidden" name="endingDate" value="<%= event.endingDate %>">
+
+              <button type="submit" class="btn edit" title="Editar evento">
+                <ion-icon name="create"></ion-icon>
+              </button>
+            </form>
+
+            <div class="del-btn-display">
+              <span class="hidden" id="event-id"><%= event._id %></span>
+              <button class="btn btn-danger del-btn" title="Deletar evento">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+              <div class="del-btn-cover"></div>
+            </div>
+          </div>
+        </summary>
+        <div class="event-desc-display">
+          <p class="event-desc"><%= event.description %></p>
+          <p class="dates">
+            Data:
+            <%= sd.slice(8) %>/<%= sd.slice(5, 7) %>/<%= sd.slice(0, 4) %>
+            - <%= ed.slice(8) %>/<%= ed.slice(5, 7) %>/<%= ed.slice(0, 4) %></p>
+        </div>
+      </details>
+      <% }) %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<%- include('includes/head') %>
+<title>Academic Maps</title>
+</head>
+
+<body>
+
+  <section class="container">
+    <%- include('includes/modals/delete') %>
+    <%- include('includes/nav') %>
+    <%- include('includes/dark-mode-btn') %>
+    <div class="content">
+      <div class="map-window shrunk">
+        <button id="events-button" class="btn" title="Eventos">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <div class="overlay" id="map"></div>
+
+        <%- include('includes/modals/marker-modal') %>
+      </div>
+      <%- include('includes/event-list') %>
+    </div>
+  </section>
+  <%- include('includes/footer') %>

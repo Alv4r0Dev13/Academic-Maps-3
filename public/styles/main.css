@@ -1,0 +1,139 @@
+/* || GENERAL || */
+
+:root {
+  --MainText: #000;
+  --TextLighter: #7a7a7a;
+  --Background: #dfe4e6;
+  --Shadow1: #a7a7a7;
+  --Shadow2: #fff;
+  --Button: #1a73e8;
+  --BtnDanger: #e23030;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  color: var(--MainText);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 2.5em;
+  background-color: var(--Background);
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+  background-color: var(--Background);
+  box-shadow: 5px 5px 10px var(--Shadow1),
+    -5px -5px 10px var(--Shadow2);
+}
+
+.underlay {
+  background-color: var(--Background);
+  box-shadow: inset 5px 5px 10px var(--Shadow1),
+    inset -5px -5px 10px var(--Shadow2);
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  color: var(--MainText);
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--Background);
+  border: none;
+  border-radius: 1em;
+  padding: .3em 1em;
+}
+
+/* || NAVBAR || */
+
+.nav {
+  height: 10rem;
+}
+
+.home-link {
+  display: block;
+  background-image: url(../img/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 25rem;
+  height: 100%;
+  margin: .5em auto 0;
+}
+
+/* || DARK MODE BUTTON || */
+
+.dark-mode-btn {
+  position: absolute;
+  font-size: 3rem;
+  display: flex;
+  background-color: var(--DMBBackground);
+  border: none;
+  border-radius: 20em;
+  width: 3.3em;
+  height: calc(36px + .4em);
+  padding: .2em;
+  top: 1em;
+  right: 1em
+}
+
+.dmb {
+  position: absolute;
+  color: var(--MainText);
+  background-color: var(--Background);
+  box-shadow: 5px 5px 10px var(--Shadow1),
+    -1px 1px 10px var(--Shadow2);
+  border-radius: 100%;
+  max-height: 36px;
+  padding: .1em;
+}
+
+.dark-mode-btn .dmb-dark {
+  display: none;
+  right: .2em;
+}
+
+.dmb-cover {
+  cursor: pointer;
+  position: absolute;
+  border-radius: 100%;
+  top: 0;
+  left: 0;
+  height: 3.6rem;
+  width: 3.6rem;
+}
+
+/* || CONTENT || */
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: calc(90% - 2.5em);
+}
+
+.btn {
+  color: white;
+  background-color: var(--Button);
+  border: none;
+  padding: .3em;
+}
+
+.btn-danger {
+  color: white;
+  background-color: var(--BtnDanger);
+  border: none;
+  padding: .3em;
+}
