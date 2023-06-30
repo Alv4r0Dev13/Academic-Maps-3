@@ -1,3 +1,5 @@
+import Login from "./modules/Login.js";
+
 const body = document.body;
 
 const mapWindow = document.querySelector('.map-window');
@@ -9,7 +11,7 @@ const delEvtId = document.getElementById('del-evt-id');
 
 let isExpanded = false;
 
-eventsButton.addEventListener('click', () => {
+if (eventsButton) eventsButton.addEventListener('click', () => {
   mapWindow.classList.toggle('shrunk');
 });
 
@@ -34,3 +36,8 @@ document.addEventListener('click', e => {
     delModal.classList.add('hidden');
   }
 });
+
+const login = new Login('.login-form');
+const signin = new Login('.signin-form');
+login.init();
+signin.init();

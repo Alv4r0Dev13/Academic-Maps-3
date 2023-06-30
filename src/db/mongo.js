@@ -9,12 +9,12 @@ var connected = false;
 async function connect() {
   connected = true;
   return new Promise(async (resolve) => {
-    await mongoose.connect(env.CONNECTION_STRING, { writeConcern: { wtimeout: 30000 } }).catch(err => {
-      console.error(err)
+    await mongoose.connect(env.ATLASDB_CONN, { writeConcern: { wtimeout: 30000 } }).catch(err => {
+      console.error(err);
       process.exit(5);
     });
     resolve(mongoose);
-  })
+  });
 }
 
 function getMongoose() {

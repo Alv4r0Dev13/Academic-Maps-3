@@ -1,0 +1,35 @@
+<%- include('includes/head') %>
+<title>Academic Maps - Signin</title>
+</head>
+
+<body>
+  <section class="container">
+    <%- include('includes/nav') %>
+    <%- include('includes/dark-mode-btn') %>
+
+    <div class="content">
+      <form action="/mapsdb-api/v1/signin" method="post" class="form signin-form">
+        <h1 class="form-title">Criar conta</h1>
+
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" class="underlay" autofocus>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="underlay">
+        <small class="input-err-msg hidden" id="email-err">Email inválido!</small>
+
+        <label for="password">Senha</label>
+        <input type="password" name="password" id="password" class="underlay">
+        <small class="input-err-msg hidden" id="password-err">A senha deve conter entre 8 e 20 caracteres!</small>
+
+        <label for="password-repeat">Confirmar senha</label>
+        <input type="password" name="password-repeat" id="password-repeat" class="underlay">
+        <small class="input-err-msg hidden" id="password-repeat-err">As senhas não são iguais!</small>
+
+        <button type="submit" class="btn submit">Criar conta</button>
+      </form>
+    </div>
+
+  </section>
+
+  <%- include('includes/footer') %>

@@ -4,10 +4,21 @@ const router = express.Router();
 
 const home = require(path.resolve(__dirname, '..', 'controllers', 'homeController'));
 const map = require(path.resolve(__dirname, '..', 'controllers', 'mapController'));
+const user = require(path.resolve(__dirname, '..', 'controllers', 'userController'));
 
 router.get('/', home.index);
 router.post('/create', home.createEvent);
 router.post('/edit', home.updateEvent);
+
+// User routers
+router.get('/login', user.loginIndex);
+router.get('/signin', user.signinIndex);
+
+router.post('/mapsdb-api/v1/singin', user.signin);
+router.post('/mapsdb-api/v1/login', user.login);
+router.post('/mapsdb-api/v1/singout', user.logout);
+router.post('/mapsdb-api/v1/subscribeEvent', user.subscribeEvent);
+
 
 // Maps routers
 router.get('/mapsdb-api/v1/readAll', map.readAll);
