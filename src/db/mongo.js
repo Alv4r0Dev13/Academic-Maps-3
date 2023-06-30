@@ -1,4 +1,5 @@
 const env = process.env;
+const path = require('path');
 
 // DATABASE
 const mongoose = require('mongoose');
@@ -16,6 +17,20 @@ async function connect() {
     resolve(mongoose);
   });
 }
+// Session
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+const sessionOptions = session({
+  secret: 'mickey mouse',
+  store: new MongoStore({ mongoUrl: env.ATLASDB_CONN }),
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true
+  }
+});
 
 function getMongoose() {
   if (!connected) connect();
@@ -26,4 +41,5 @@ module.exports = {
   dbConn,
   connect,
   getMongoose,
+  sessionOptions
 };

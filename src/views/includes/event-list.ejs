@@ -19,7 +19,7 @@
             <button class="btn find" title="Ir">
               <ion-icon name="map"></ion-icon>
             </button>
-
+            <% if (user && user.type === 'admin') { %>
             <form action="/edit" method="post">
               <input type="hidden" name="_id" value="<%= event._id %>">
               <input type="hidden" name="title" value="<%= event.title %>">
@@ -41,6 +41,7 @@
               </button>
               <div class="del-btn-cover"></div>
             </div>
+            <% } %>
           </div>
         </summary>
         <div class="event-desc-display">

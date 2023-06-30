@@ -79,3 +79,35 @@
   height: 100%;
   width: 6em;
 }
+
+/* MESSAGE */
+
+.msg-modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, .3);
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+}
+
+.msg-modal-display {
+  position: fixed;
+  background-color: var(--Background);
+  border-radius: 1em;
+  padding: 2em;
+  width: 30em;
+  height: 10em;
+  top: calc(50% - 6em);
+  left: calc(50% - 17em);
+}
+
+.msg-modal-display a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 1em;
+  width: fit-content;
+  margin: 1em auto;
+  padding: .3em .6em;
+}

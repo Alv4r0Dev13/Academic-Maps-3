@@ -1,0 +1,30 @@
+<% if (errors.length > 0) { %>
+  <% if (errors[0] === 'login') { %>
+    <div class="msg-modal">
+      <div class="msg-modal-display">
+        <p class="modal-msg">É necessario fazer login para executar esta ação!</p>
+        <a href="/" class="btn" >OK</a>
+      </div>
+    </div>
+  <% } else if (errors[0] === 'admin') { %>
+    <div class="msg-modal">
+      <div class="msg-modal-display">
+        <p class="modal-msg">É necessario uma conta de administrador para executar esta ação!</p>
+        <a href="/" class="btn" >OK</a>
+      </div>
+    </div>
+  <% } else { %>
+  <div class="err-msg">
+    <% errors.forEach(e => { %>
+    <%= e %><br>
+    <% }); %>
+  </div>
+  <% } %>
+<% } %>
+<% if (success.length > 0) { %>
+  <div class="success-msg">
+    <% success.forEach(s => { %>
+    <%= s %><br>
+    <% }); %>
+  </div>
+<% } %>

@@ -1,3 +1,10 @@
 <div class="nav">
+  <% if (!user) { %>
+    <div class="nav-links">
+      <a href="/login" class="nav-link">Entrar</a>
+      <a href="/signin" class="nav-link">Criar conta</a>
+    </div>
+  <% } else { %>
+  <% } %>
   <a href="/" class="home-link"></a>
 </div>

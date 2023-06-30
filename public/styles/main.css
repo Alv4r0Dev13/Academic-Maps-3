@@ -61,17 +61,32 @@ input {
 /* || NAVBAR || */
 
 .nav {
+  display: flex;
   height: 10rem;
 }
 
 .home-link {
+  position: absolute;
   display: block;
   background-image: url(../img/logo.png);
   background-size: contain;
   background-repeat: no-repeat;
   width: 25rem;
   height: 100%;
-  margin: .5em auto 0;
+  margin: .5em calc(50vw - 12.5rem) 0;
+}
+
+.nav-links {
+  padding: 1.1em 0 0 1em;
+}
+
+.nav-link {
+  color: var(--MainText);
+  text-decoration: none;
+}
+
+.nav-link:not(:first-of-type) {
+  margin-left: 1em;
 }
 
 /* || DARK MODE BUTTON || */

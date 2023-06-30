@@ -11,6 +11,7 @@
 
       <% if(method === 'update') { %>
       <h1 class="form-title">Editar Evento</h1>
+      <%- include('includes/modals/msg-modal') %>
 
       <label for="title">Nome do evento</label>
       <input type="text" name="title" id="title" class="underlay" value="<%= event.title %>">
