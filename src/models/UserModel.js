@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const driver = require('../db/neo4j');
+const neo4j = require('../db/neo4j');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 
@@ -50,6 +50,12 @@ class User {
     this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
     this.user = await UserModel.create(this.body);
+
+    // Cria no Neo4J
+    let userId = this.user._id.toString('hex');
+    await neo4j.run('CREATE (:User{id:$userId})', { userId })
+      .then(result => console.log(result.summary.counters._stats.nodesCreated))
+      .catch(e => console.log(e));
   }
 
   validate() {
@@ -81,6 +87,14 @@ class User {
   async userExists() {
     const user = await UserModel.findOne({ email: this.body.email });
     if (user) this.errors.push('Email já cadastrado!');
+  }
+
+  static async subscribe(userId, eventId) {
+    await neo4j.run('MATCH (u:User{id:$userId}) OPTIONAL MATCH (e:Event{id:$eventId}) CREATE (u)-[:SUBSCRIBED]->(e)', {
+      userId,
+      eventId
+    }).then(result => console.log(result.summary.counters._stats.relationshipsCreated))
+      .catch(e => console.error(e));
   }
 }
 

@@ -23,7 +23,6 @@ export default class Login {
   validate(e, ...errs) {
     const el = e.target;
     const password = el.querySelector('#password').value;
-    const passwordRep = el.querySelector('#password-repeat').value;
     let error = false;
 
     if (password.length < 8 || password.length > 20) {
@@ -31,12 +30,14 @@ export default class Login {
       error = true;
     }
 
-    if (this.form.classList.contains('.signin-form'))
+    if (this.form.classList.contains('.signin-form')) {
+      const passwordRep = el.querySelector('#password-repeat').value;
       if (password !== passwordRep) {
         console.log(password, passwordRep);
         this.setError(errs[1]);
         error = true;
       }
+    }
 
     if (!error) el.submit();
   }

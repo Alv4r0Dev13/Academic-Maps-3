@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const neo4j = require('../db/neo4j');
 
 const EventSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -23,7 +24,11 @@ class Event {
 
   async create() {
     this.event = await EventModel.create(this.body);
-    console.log(this.event);
+    // Cria no Neo4J
+    let eventId = this.event._id.toString('hex');
+    await neo4j.run('CREATE (:Event{id:$eventId})', { eventId })
+      .then(result => console.log(result.summary.counters._stats.nodesCreated))
+      .catch(e => console.log(e));
   }
 
   static async readAll() {

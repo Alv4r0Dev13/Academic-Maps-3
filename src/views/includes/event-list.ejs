@@ -1,6 +1,6 @@
 <div class="list-window">
   <div class="search">
-    <form action="/mapsdb-api/v1/search" method="post">
+    <form action="/search" method="post">
       <input type="search" name="text" id="search-bar" class="underlay" placeholder="Procurar evento">
       <button id="search-btn" class="btn" title="Buscar evento">
         <ion-icon name="search"></ion-icon>
@@ -10,8 +10,9 @@
   <div class="list-display">
     <div class="list">
       <% events.forEach(event => { %>
-      <% const sd = new String(event.startDate).slice(0, 10) %>
-      <% const ed = new String(event.endingDate).slice(0, 10) %>
+      <% const sd = new Date(event.startDate) %>
+      <% const sd2 = [sd.getDay(), sd.getMonth(), sd.getFullYear()] %>
+      <% const ed = new String(event.endingDate).slice(0, 10).split('-') %>
       <details class="event overlay">
         <summary>
           <span class="event-title"><%= event.title %></span>
@@ -47,9 +48,22 @@
         <div class="event-desc-display">
           <p class="event-desc"><%= event.description %></p>
           <p class="dates">
+            <% if (event.startDate && event.endingDate) { %>
             Data:
-            <%= sd.slice(8) %>/<%= sd.slice(5, 7) %>/<%= sd.slice(0, 4) %>
-            - <%= ed.slice(8) %>/<%= ed.slice(5, 7) %>/<%= ed.slice(0, 4) %></p>
+            <%= event.startDate %>
+            <%= sd2[0] %>/<%= sd2[1] %>/<%= sd2[2] %>
+            - <%= ed[2] %>/<%= ed[1] %>/<%= ed[0] %>
+            <% } else { %>
+            Sem data
+            <% } %>
+          </p>
+          <% if (user && user.type !== 'admin') { %>
+          <form action="/subscribeEvent" method="post">
+            <input type="hidden" name="user" value="<%= user._id %>">
+            <input type="hidden" name="event" value="<%= event._id %>">
+            <button type="submit" class="btn subscribe">Inscrever-se</button>
+          </form>
+          <% } %>
         </div>
       </details>
       <% }) %>

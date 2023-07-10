@@ -72,20 +72,30 @@ input {
   background-size: contain;
   background-repeat: no-repeat;
   width: 25rem;
-  height: 100%;
+  height: 10rem;
   margin: .5em calc(50vw - 12.5rem) 0;
 }
 
 .nav-links {
+  display: flex;
   padding: 1.1em 0 0 1em;
 }
 
+.nav-link,
+.nav-username {
+  font-size: 2.3rem;
+}
+
 .nav-link {
-  color: var(--MainText);
+  color: var(--TextLighter);
   text-decoration: none;
 }
 
-.nav-link:not(:first-of-type) {
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-link:not(:first-child) {
   margin-left: 1em;
 }
 
@@ -101,7 +111,7 @@ input {
   width: 3.3em;
   height: calc(36px + .4em);
   padding: .2em;
-  top: 1em;
+  top: .7em;
   right: 1em
 }
 

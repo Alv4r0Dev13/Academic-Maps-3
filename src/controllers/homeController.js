@@ -1,10 +1,13 @@
+const Event = require('../models/EventModel');
+
 const index = async (req, res) => {
-  fetch('http://localhost:3000/mapsdb-api/v1/readAll')
-    .then(response => response.json())
-    .then(data => {
-      res.render('index.ejs', { events: data });
-    })
-    .catch(e => console.error(e));
+  try {
+    let events = await Event.readAll();
+    res.render('index', { events });
+  } catch (e) {
+    console.error(e);
+    res.status(404).send('err/404');
+  };
 };
 
 const createEvent = (req, res) => {

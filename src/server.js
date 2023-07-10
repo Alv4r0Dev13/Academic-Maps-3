@@ -36,5 +36,8 @@ app.set('view engine', 'ejs');
 app.use(router);
 
 mongo.connect().then(() => {
-  app.listen(port, () => console.log(`Server listening on port ${port}\nAcess: http://localhost:${port}`));
+  app.listen(port, () => console.log(`
+Server listening on port ${port}
+Access: http://localhost:${port}
+`));
 });

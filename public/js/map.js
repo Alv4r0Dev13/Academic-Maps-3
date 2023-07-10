@@ -4,12 +4,13 @@ let marker;
 let markers = [];
 
 async function loadMarkers() {
-  let events = await fetch('http://localhost:3000/mapsdb-api/v1/readAll');
+  let events = await fetch('http://localhost:3000/events');
   events = await events.json();
   events.forEach(event => {
     let newMarker = new google.maps.Marker({
-      position: { lat: parseFloat(event.positionLat),
-                  lng: parseFloat(event.positionLng)
+      position: {
+        lat: parseFloat(event.positionLat),
+        lng: parseFloat(event.positionLng)
       },
       map,
       title: event.title,
@@ -57,7 +58,7 @@ async function initMap() {
 }
 
 initMap()
-.then(loadMarkers());
+  .then(loadMarkers());
 
 /* EVENTS */
 

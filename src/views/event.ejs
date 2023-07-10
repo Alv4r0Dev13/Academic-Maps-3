@@ -7,7 +7,7 @@
   <section class="container">
     <%- include('includes/nav') %>
     <%- include('includes/dark-mode-btn') %>
-    <form action="/mapsdb-api/v1/<%= method %><% if(event._id) { %>/<%= event._id%><% } %>" method="post" class="form event-form">
+    <form action="/event/<%= method %><% if(event._id) { %>/<%= event._id%><% } %>" method="post" class="form event-form">
 
       <% if(method === 'update') { %>
       <h1 class="form-title">Editar Evento</h1>
