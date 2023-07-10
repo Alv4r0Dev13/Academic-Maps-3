@@ -96,6 +96,13 @@ class User {
     }).then(result => console.log(result.summary.counters._stats.relationshipsCreated))
       .catch(e => console.error(e));
   }
+
+  static async readSubscribed(user) {
+    let response;
+    await neo4j.run('MATCH (u:User)-[:SUBSCRIBED]->(e:Event) WHERE u.id = $user RETURN e.id as events', { user })
+      .then(result => response = result.records);
+    return response;
+  }
 }
 
 module.exports = User;

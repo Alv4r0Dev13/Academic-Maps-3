@@ -1,0 +1,69 @@
+<%- include('event-search') %>
+<div class="list-display">
+  <div class="list">
+    <% events.forEach(event => { %>
+      <% const sd = new Date(event.startDate) %>
+      <% const sd2 = [sd.getDay(), sd.getMonth(), sd.getFullYear()] %>
+      <% const ed = new String(event.endingDate).slice(0, 10).split('-') %>
+      <details class="event overlay">
+        <summary>
+          <span class="event-title"><%= event.title %></span>
+          <div class="buttons">
+            <button class="btn find" title="Ir">
+              <ion-icon name="map"></ion-icon>
+            </button>
+            <% if (user && user.type === 'admin') { %>
+            <form action="/edit" method="post">
+              <input type="hidden" name="_id" value="<%= event._id %>">
+              <input type="hidden" name="title" value="<%= event.title %>">
+              <input type="hidden" name="positionLat" value="<%= event.positionLat %>">
+              <input type="hidden" name="positionLng" value="<%= event.positionLng %>">
+              <input type="hidden" name="description" value="<%= event.description %>">
+              <input type="hidden" name="startDate" value="<%= event.startDate %>">
+              <input type="hidden" name="endingDate" value="<%= event.endingDate %>">
+
+              <button type="submit" class="btn edit" title="Editar evento">
+                <ion-icon name="create"></ion-icon>
+              </button>
+            </form>
+
+            <div class="del-btn-display">
+              <span class="hidden" id="event-id"><%= event._id %></span>
+              <button class="btn btn-danger del-btn" title="Deletar evento">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+              <div class="del-btn-cover"></div>
+            </div>
+            <% } %>
+          </div>
+        </summary>
+        <div class="event-desc-display">
+          <p class="event-desc"><%= event.description %></p>
+          <p class="dates">
+            <% if (event.startDate && event.endingDate) { %>
+            Data:
+            <%= event.startDate %>
+            <%= sd2[0] %>/<%= sd2[1] %>/<%= sd2[2] %>
+            - <%= ed[2] %>/<%= ed[1] %>/<%= ed[0] %>
+            <% } else { %>
+            Sem data
+            <% } %>
+          </p>
+          <% if (user && user.type !== 'admin') { %>
+            <% let subscribed = false, evtId = event._id.toString('hex') %>
+            <% for (evt of eventsSub) { %>
+              <% if (evtId === evt._id.toString('hex')) {subscribed = true } %> 
+            <% } %>
+            <% if (!subscribed) { %>
+              <form action="/subscribeEvent" method="post">
+                <input type="hidden" name="user" value="<%= user._id %>">
+                <input type="hidden" name="event" value="<%= event._id %>">
+                <button type="submit" class="btn subscribe">Inscrever-se</button>
+              </form>
+            <% } %>
+          <% } %>
+        </div>
+      </details>
+    <% }) %>
+  </div>
+</div>

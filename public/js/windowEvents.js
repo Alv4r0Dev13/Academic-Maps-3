@@ -8,6 +8,10 @@ const searchBar = document.getElementById('search-bar');
 const eventList = document.getElementsByClassName('event');
 const delModal = document.querySelector('.del-mod-window');
 const delEvtId = document.getElementById('del-evt-id');
+const allEvtTab = document.getElementById('all-events');
+const allEvtContent = document.getElementById('all-evt-content');
+const subEvtTab = document.getElementById('sub-events');
+const subEvtContent = document.getElementById('sub-evt-content');
 
 let isExpanded = false;
 
@@ -34,6 +38,18 @@ document.addEventListener('click', e => {
   };
   if (el.classList.contains('cancel-btn')) {
     delModal.classList.add('hidden');
+  }
+  if (el === allEvtTab) {
+    if (allEvtContent.classList.contains('hidden')) {
+      allEvtContent.classList.remove('hidden');
+      subEvtContent.classList.add('hidden');
+    }
+  }
+  if (el === subEvtTab) {
+    if (subEvtContent.classList.contains('hidden')) {
+      subEvtContent.classList.remove('hidden');
+      allEvtContent.classList.add('hidden');
+    }
   }
 });
 
