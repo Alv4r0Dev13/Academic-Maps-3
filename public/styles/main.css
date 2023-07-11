@@ -2,7 +2,7 @@
 
 :root {
   --MainText: #000;
-  --TextLighter: #7a7a7a;
+  --TextLighter: #909090;
   --Background: #dfe4e6;
   --Shadow1: #a7a7a7;
   --Shadow2: #fff;
@@ -153,6 +153,7 @@ input {
   color: white;
   background-color: var(--Button);
   border: none;
+  border-radius: .5em;
   padding: .3em;
 }
 

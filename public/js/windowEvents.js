@@ -9,9 +9,13 @@ const eventList = document.getElementsByClassName('event');
 const delModal = document.querySelector('.del-mod-window');
 const delEvtId = document.getElementById('del-evt-id');
 const allEvtTab = document.getElementById('all-events');
+const tabContent = [...document.getElementsByClassName('tab-content')];
+const tabLinks = [...document.getElementsByClassName('tab-link')];
 const allEvtContent = document.getElementById('all-evt-content');
 const subEvtTab = document.getElementById('sub-events');
 const subEvtContent = document.getElementById('sub-evt-content');
+const recommended = document.getElementById('recommended');
+const recContent = document.getElementById('rec-content');
 
 let isExpanded = false;
 
@@ -40,15 +44,27 @@ document.addEventListener('click', e => {
     delModal.classList.add('hidden');
   }
   if (el === allEvtTab) {
-    if (allEvtContent.classList.contains('hidden')) {
+    if (el.classList.contains('closed')) {
+      tabLinks.forEach(elem => elem.classList.add('closed'));
+      tabContent.forEach(elem => elem.classList.add('hidden'));
+      el.classList.remove('closed');
       allEvtContent.classList.remove('hidden');
-      subEvtContent.classList.add('hidden');
     }
   }
   if (el === subEvtTab) {
-    if (subEvtContent.classList.contains('hidden')) {
+    if (el.classList.contains('closed')) {
+      tabLinks.forEach(elem => elem.classList.add('closed'));
+      tabContent.forEach(elem => elem.classList.add('hidden'));
+      el.classList.remove('closed');
       subEvtContent.classList.remove('hidden');
-      allEvtContent.classList.add('hidden');
+    }
+  }
+  if (el === recommended) {
+    if (el.classList.contains('closed')) {
+      tabLinks.forEach(elem => elem.classList.add('closed'));
+      tabContent.forEach(elem => elem.classList.add('hidden'));
+      el.classList.remove('closed');
+      recContent.classList.remove('hidden');
     }
   }
 });

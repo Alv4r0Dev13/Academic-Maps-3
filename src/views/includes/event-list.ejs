@@ -1,22 +1,26 @@
 <div class="list-window">
   <% if (eventsSub) { %>
-    <div class="tabs">
-      <p class="tab-link" id="all-events">Todos os eventos</p>
-      <p class="tab-link" id="sub-events">Eventos inscritos</p>
-    </div>
-    <div class="tab-content" id="all-evt-content">
-      <%- include('events') %>
-    </div>
-    <div class="tab-content hidden" id="sub-evt-content">
-      <% if (eventsSub.length > 0) { %>
-        <%- include('sub-events') %>
-      <% } else { %>
-        <p class="no-events">Você não está incrito em nenhum evento!</p>
-      <% } %>
-    </div>
+  <div class="tabs">
+    <p class="tab-link" id="all-events">Todos</p>
+    <p class="tab-link closed" id="sub-events">Inscrito</p>
+    <p class="tab-link closed" id="recommended">Recomendado</p>
+  </div>
+  <div class="tab-content" id="all-evt-content">
+    <%- include('events') %>
+  </div>
+  <div class="tab-content hidden" id="sub-evt-content">
+    <% if (eventsSub.length > 0) { %>
+    <%- include('sub-events') %>
+    <% } else { %>
+    <p class="no-events">Você não está inscrito em nenhum evento!</p>
+    <% } %>
+  </div>
+  <div class="tab-content hidden" id="rec-content">
+    <p class="no-events">Voce precisa inscrever-se em um evento para receber recomendações!</p>
+  </div>
   <% } else { %>
-    <div class="tab-content">
-      <%- include('events') %>
-    </div>
+  <div class="tab-content">
+    <%- include('events') %>
+  </div>
   <% } %>
 </div>
