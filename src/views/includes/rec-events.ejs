@@ -1,6 +1,6 @@
 <div class="list-display">
   <div class="list">
-    <% eventsSub.forEach(event => { %>
+    <% eventsRec.forEach(event => { %>
     <% const sd = new Date(event.startDate), ed = new Date(event.endingDate) %>
     <% const sd2 = [sd.getDate(), sd.getMonth(), sd.getFullYear()] %>
     <% const ed2 = [ed.getDate(), ed.getMonth(), ed.getFullYear()] %>
@@ -48,6 +48,11 @@
           Sem data
           <% } %>
         </p>
+        <form action="/subscribeEvent" method="post">
+          <input type="hidden" name="user" value="<%= user._id %>">
+          <input type="hidden" name="event" value="<%= event._id %>">
+          <button type="submit" class="btn subscribe">Inscrever-se</button>
+        </form>
       </div>
     </details>
     <% }) %>

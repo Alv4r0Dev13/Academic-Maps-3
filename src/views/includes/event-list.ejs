@@ -16,7 +16,15 @@
     <% } %>
   </div>
   <div class="tab-content hidden" id="rec-content">
+    <% if (eventsRec) { %>
+    <% if (eventsRec.length > 0) { %>
+    <%- include('rec-events') %>
+    <% } else { %>
+    <p class="no-events">Não temos recomendações por enquanto</p>
+    <% } %>
+    <% } else { %>
     <p class="no-events">Voce precisa inscrever-se em um evento para receber recomendações!</p>
+    <% } %>
   </div>
   <% } else { %>
   <div class="tab-content">

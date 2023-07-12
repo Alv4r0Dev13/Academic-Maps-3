@@ -97,11 +97,38 @@ class User {
       .catch(e => console.error(e));
   }
 
-  static async readSubscribed(user) {
+  static async readSubscribed(user, session) {
     let response;
-    await neo4j.run('MATCH (u:User)-[:SUBSCRIBED]->(e:Event) WHERE u.id = $user RETURN e.id as events', { user })
-      .then(result => response = result.records);
+    if (!session) {
+      await neo4j.run('MATCH (u:User)-[:SUBSCRIBED]->(e:Event) WHERE u.id = $user RETURN e.id as events', { user })
+        .then(result => response = result.records);
+    } else {
+      await session.run('MATCH (u:User)-[:SUBSCRIBED]->(e:Event) WHERE u.id = $user RETURN e.id as events', { user })
+        .then(result => response = result.records);
+    }
     return response;
+  }
+
+  static async readRecommended(user) {
+    let response;
+    await neo4j.run(
+      'MATCH (u:User)-[:SUBSCRIBED]->(e:Event)<-[:SUBSCRIBED]-(u2:User) WHERE u.id = $user RETURN DISTINCT u2.id as userId', { user })
+      .then(result => response = result.records);
+    const recommendedUsers = response.map(record => record.get('userId'));
+
+    let events = new Set();
+    for (let userId of recommendedUsers) {
+      let userEvents = await this.readSubscribed(userId, neo4j);
+      userEvents.forEach(event => events.add(event._fields[0]));
+    }
+    let uniqueEvents = [...events];
+
+    let subscribedEvts = [];
+    let responseSub = await this.readSubscribed(user, neo4j);
+    for (let record of responseSub) subscribedEvts.push(record._fields[0]);
+
+    let recommendedEvts = uniqueEvents.filter(evt => !subscribedEvts.includes(evt));
+    return recommendedEvts;
   }
 }
 

@@ -11,6 +11,12 @@ const session = require(path.resolve(__dirname, '..', 'middlewares', 'sessionMid
 router.get('/', home.index);
 router.post('/create', session.adminRequired, home.createEvent);
 router.post('/edit', session.adminRequired, home.updateEvent);
+router.post('/search', (req, res) => {
+  let text = req.body.text;
+  if (text === '') res.redirect('/');
+  else res.redirect('/search/' + text);
+});
+router.get('/search/:text', home.searchByText);
 
 // User routers
 router.get('/login', user.loginIndex);
@@ -29,17 +35,5 @@ router.get('/event/:id', map.readById);
 router.post('/event/create', session.adminRequired, map.createEvent);
 router.post('/event/update/:id', session.adminRequired, map.updateEvent);
 router.post('/event/delete', session.adminRequired, map.deleteEvent);
-
-router.post('/search', (req, res) => {
-  let text = req.body.text;
-
-  if (text === '') {
-    res.redirect('/');
-  } else {
-    res.redirect('/search/' + text);
-  }
-});
-
-router.get('/search/:text', map.searchByText);
 
 module.exports = router;

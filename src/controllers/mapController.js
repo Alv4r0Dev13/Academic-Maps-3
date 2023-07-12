@@ -32,19 +32,10 @@ const deleteEvent = async (req, res) => {
   res.redirect('/');
 };
 
-const searchByText = async (req, res) => {
-  let text = req.params.text;
-  console.log(text);
-  let result = await Event.search(text);
-  console.log(result);
-  res.render('index', { events: result });
-};
-
 module.exports = {
   readAll,
   readById,
   createEvent,
   updateEvent,
   deleteEvent,
-  searchByText
 };
