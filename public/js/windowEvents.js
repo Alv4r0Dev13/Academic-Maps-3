@@ -16,6 +16,14 @@ const subEvtTab = document.getElementById('sub-events');
 const subEvtContent = document.getElementById('sub-evt-content');
 const recommended = document.getElementById('recommended');
 const recContent = document.getElementById('rec-content');
+const showPasswordBtn = document.querySelector('.sp-over');
+const passwordInput = document.querySelector('.pi-input');
+const showPasswordIcon = document.querySelector('.sp-icon');
+const showPasswordIconOff = document.querySelector('.sp-icon-off');
+const showPasswordRepBtn = document.querySelector('.spr-over');
+const passwordRepInput = document.querySelector('.pri-input');
+const showPasswordRepIcon = document.querySelector('.spr-icon');
+const showPasswordRepIconOff = document.querySelector('.spr-icon-off');
 
 let isExpanded = false;
 
@@ -65,6 +73,28 @@ document.addEventListener('click', e => {
       tabContent.forEach(elem => elem.classList.add('hidden'));
       el.classList.remove('closed');
       recContent.classList.remove('hidden');
+    }
+  }
+  if (el === showPasswordBtn) {
+    if (passwordInput.getAttribute('type') === 'password') {
+      showPasswordIcon.classList.toggle('hidden');
+      showPasswordIconOff.classList.toggle('hidden');
+      passwordInput.setAttribute('type', 'text');
+    } else {
+      showPasswordIcon.classList.toggle('hidden');
+      showPasswordIconOff.classList.toggle('hidden');
+      passwordInput.setAttribute('type', 'password');
+    }
+  }
+  if (el === showPasswordRepBtn) {
+    if (passwordRepInput.getAttribute('type') === 'password') {
+      showPasswordRepIcon.classList.toggle('hidden');
+      showPasswordRepIconOff.classList.toggle('hidden');
+      passwordRepInput.setAttribute('type', 'text');
+    } else {
+      showPasswordRepIcon.classList.toggle('hidden');
+      showPasswordRepIconOff.classList.toggle('hidden');
+      passwordRepInput.setAttribute('type', 'password');
     }
   }
 });

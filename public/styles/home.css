@@ -63,6 +63,7 @@
 
 .search {
   border-radius: 1em;
+  margin-bottom: .6em;
 }
 
 .search form {
@@ -96,7 +97,6 @@
   overflow-y: auto;
   overflow-wrap: break-word;
   max-height: calc(100% - 9rem);
-  margin-top: .6em;
 }
 
 .list {

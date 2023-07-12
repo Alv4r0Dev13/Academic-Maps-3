@@ -1,0 +1,12 @@
+.error-title {
+  margin-top: 2em;
+}
+
+.error-desc {
+  color: var(--TextLighter);
+}
+
+.error-title,
+.error-desc {
+  text-align: center;
+}

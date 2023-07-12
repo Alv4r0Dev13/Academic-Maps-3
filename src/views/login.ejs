@@ -17,7 +17,14 @@
         <small class="input-err-msg hidden" id="email-err">Email inválido!</small>
 
         <label for="password">Senha</label>
-        <input type="password" name="password" id="password" class="underlay">
+        <div class="password-input">
+          <input type="password" name="password" id="password" class="pi-input underlay">
+          <div class="show-password">
+            <ion-icon name="eye" class="sp-icon"></ion-icon>
+            <ion-icon name="eye-off" class="sp-icon-off hidden"></ion-icon>
+            <div class="sp-over"></div>
+          </div>
+        </div>
         <small class="input-err-msg hidden" id="password-err">A senha deve conter entre 8 e 20 caracteres!</small>
 
         <button type="submit" class="btn submit">Entrar</button>
